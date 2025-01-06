@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import requests
 from deep_translator import GoogleTranslator
+from json import JSONResponse
 
 app = FastAPI()
 
@@ -26,11 +27,8 @@ def frases_kanye():
         # Traduz a citação para português
         traduzido = GoogleTranslator(source='en', target='pt').translate(aspas)
 
-        return{
-                'Original':aspas,
-                'Tradução': traduzido   
-        }
-
+        return JSONResponse(content={'Original': aspas, 'Tradução': traduzido},
+                        headers={'Access-Control-Allow-Origin': '*'})
     except requests.exceptions.RequestException as e:
         return {"error": f"Erro na requisição: {str(e)}"}
 
