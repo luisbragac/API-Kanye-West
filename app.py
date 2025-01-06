@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import requests
 from deep_translator import GoogleTranslator
-from json import JSONResponse
+from fastapi.response import JSONResponse
 
 app = FastAPI()
 
